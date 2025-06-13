@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:02:53 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/12 19:55:46 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/13 11:48:02 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static int	verif_in_quote(t_pars *lst, int i)
 	{
 		if (i >= lst->tab[j] && i < lst->tab[j + 1])
 			return (-1);
+		if (i >= lst->tab[j + 1])
+			return (1);
 		j += 2;
 	}
 	return (1);

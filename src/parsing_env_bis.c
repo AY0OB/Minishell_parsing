@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 05:47:01 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/12 19:57:05 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/13 12:12:57 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,20 @@ static char	*feed_new_content(char *str,
 	}
 	return (n_content);
 }
-/*
-static void	incr_tab_bis(t_pars *lst, int pos, int len, int len_bis)
-{
 
+static void	incr_tab_bis(t_pars *lst, int pos, int len_add, int len_base)
+{
+	int	i;
+
+	i = 0;
+	while (i < len_base)
+	{
+		if (lst->tab[i] >= pos)
+			lst->tab[i] += (len_add);
+		i++;
+	}
 }
-*/
+
 static void	incr_tab(t_pars *lst, char *n_content, int pos, int len_base)
 {
 	int	len_c;
@@ -86,27 +94,9 @@ static void	incr_tab(t_pars *lst, char *n_content, int pos, int len_base)
 	len_nc = ft_strlen(n_content);
 	i = 1;
 	if (len_c != 0 && len_c <= len_nc)
-	{
-		if (lst->tab[0] >= pos)
-			lst->tab[0] += (len_nc - len_c);
-		while (i < len_base)
-		{
-			if (lst->tab[i] >= pos)
-				lst->tab[i] += (len_nc - len_c);
-			i++;
-		}
-	}
+		incr_tab_bis(lst, pos, len_nc - len_c, len_base);
 	else if (len_nc != 0 && len_nc <= len_c)
-	{
-		if (lst->tab[0] >= pos)
-			lst->tab[0] -= (len_c - len_nc);
-		while (i < len_base)
-		{
-			if (lst->tab[i] >= pos)
-				lst->tab[i] -= (len_c - len_nc);
-			i++;
-		}
-	}
+		incr_tab_bis(lst, pos, len_nc - len_c, len_base);
 }
 
 void	add_env(t_pars *lst, char *env_var, t_env *info)
