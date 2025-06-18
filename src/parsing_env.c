@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:02:53 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 14:17:21 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:26:40 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static char	*get_env(char *str, int i, int end_quote)
 
 	j = 0;
 	i++;
-	while (str[i] && (str[i] < 9 || str[i] > 13)
-		&& str[i] != 32 && i < end_quote
-		&& str[i] != '\'' && str[i] != '$')
+	if (str[i] == '$')
+		j++;
+	while (str[i] && (str[i] < 9 || str[i] > 13) && str[i] != 32
+		&& i < end_quote && str[i] != '\'' && str[i] != '$')
 	{
 		i++;
 		j++;
@@ -30,25 +31,48 @@ static char	*get_env(char *str, int i, int end_quote)
 	pre_env = ft_calloc(sizeof(char), j + 1);
 	i = i - j;
 	j = 0;
-	while (str[i] && (str[i] < 9 || str[i] > 13)
-		&& str[i] != 32 && i < end_quote
-		&& str[i] != '\'' && str[i] != '$')
+	if (str[i] == '$')
+		pre_env[j] = str[i];
+	while (str[i] && (str[i] < 9 || str[i] > 13) && str[i] != 32
+		&& i < end_quote && str[i] != '\'' && str[i] != '$')
 		pre_env[j++] = str[i++];
 	env_value = getenv((const char *)pre_env);
 	free(pre_env);
 	return (env_value);
 }
 
-static int	pos_end_quote(t_pars *lst, int i)
+static int	pos_end_quote(t_pars *lst, int i, int len_base)
 {
-	int	j;
+	/*int	j;
 
 	j = 0;
-	while (i >= lst->tab[j])
+	if (lst->tab[1] == 0 && lst->dtab[1] = 0)
+		return (ft_strlen(lst->content));
+	while (i >= lst->tab[j] && j < len_base)
 	{
 		j += 2;
 	}
-	return (lst->tab[j]);
+	if (j > len_base)
+		return (ft_strlen(lst->content));
+	return (lst->tab[j]);*/
+	int	j;
+	int	d;
+
+	j = 0;
+	d = 0;
+	while (j < len_base && i >= lst->tab[j])
+		j += 2;
+	while (d < len_base && i >= lst->dtab[d])
+		d += 2;
+	if (j > len_base && d > len_base)
+		return (ft_strlen(lst->content));
+	if (j > len_base)
+		return (lst->dtab[d]);
+	if (d > len_base)
+		return (lst->tab[j]);
+	if (lst->tab[j] < lst->dtab[d])
+		return (lst->tab[j]);
+	return (lst->dtab[d]);
 }
 
 static int	verif_in_quote(t_pars *lst, int i)
@@ -62,7 +86,7 @@ static int	verif_in_quote(t_pars *lst, int i)
 	{
 		if (i >= lst->tab[j] && i < lst->tab[j + 1])
 			return (-1);
-		if (i >= lst->tab[j + 1])
+		if (i > lst->tab[j + 1])
 			return (1);
 		j += 2;
 	}
@@ -85,7 +109,7 @@ static void	check_env(t_pars *lst, int len_base)
 			&& (lst->content[i + 1] < 9 || lst->content[i + 1] > 13)
 			&& verif_in_quote(lst, i) != -1)
 		{
-			end_quote = pos_end_quote(lst, i);
+			end_quote = pos_end_quote(lst, i, len_base);
 			env_var = get_env(lst->content, i, end_quote);
 			info.i = i;
 			info.end_quote = end_quote;
@@ -109,11 +133,8 @@ void	pars_env(t_pars **lst)
 	{
 		if (lst_tmp->tab)
 		{
-			if (lst_tmp->tab[1] != 0)
-			{
-				len_content_base = ft_strlen(lst_tmp->content);
-				check_env(lst_tmp, len_content_base);
-			}
+			len_content_base = ft_strlen(lst_tmp->content);
+			check_env(lst_tmp, len_content_base);
 		}
 		lst_tmp = lst_tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:47:53 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/12 19:54:47 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 18:20:04 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_envbis	set_envbis(void)
 int	end_env(char *str, t_envbis info, int end_quote)
 {
 	info.j++;
+	if (str[info.j] == '$')
+		return (info.j + 1);
 	while (str[info.j] && (str[info.j] < 9 || str[info.j] > 13)
 		&& str[info.j] != 32 && info.j < end_quote
 		&& str[info.j] != '\'' && str[info.j] != '$')

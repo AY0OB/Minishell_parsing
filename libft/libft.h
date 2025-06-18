@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:28:07 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 14:33:15 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:29:57 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_pars
 	char			*content;
 	enum e_type		type;
 	int				*tab;
+	int				*dtab;
 	int				norm;
 	struct s_pars	*next;
 	struct s_pars	*prev;

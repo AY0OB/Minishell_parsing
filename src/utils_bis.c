@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   utils_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 09:46:39 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 15:30:40 by amairia          ###   ########.fr       */
+/*   Created: 2025/06/18 18:03:25 by amairia           #+#    #+#             */
+/*   Updated: 2025/06/18 18:05:29 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	ft_lstclear(t_pars **lst)
+#include "../include/minishell.h"
+
+int	even_nb(int nb)
 {
-	t_pars	*tmp_next;
-
-	if (!lst)
-		return ;
-	if (*lst)
-	{
-		while (*lst)
-		{
-			tmp_next = (*lst)->next;
-			if ((*lst)->content)
-				free((*lst)->content);
-			if ((*lst)->tab)
-				free((*lst)->tab);
-			if ((*lst)->dtab)
-				free((*lst)->dtab);
-			free(*lst);
-			*lst = tmp_next;
-		}
-	}
-	free(lst);
+	if (nb % 2 != 0)
+		nb++;
+	return (nb);
 }

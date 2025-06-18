@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 01:27:19 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/06 10:51:40 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:27:03 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	feed_lst_content(t_pars **lst, char *line, int *i)
 		return (-1);
 	feed_lst_type(ft_lstlast(*lst), -1);
 	if (set_int_quote(ft_lstlast(*lst), line, k, (*i) - 1) == -1)
+		return (-1);
+	if (set_int_dquote(ft_lstlast(*lst), line, k, (*i) - 1) == -1)
 		return (-1);
 	return (1);
 }

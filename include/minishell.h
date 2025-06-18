@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:52:12 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/13 12:14:08 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 18:06:27 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void		set_index_bis(char *line, int *i, int *size);
 void		feed_lst_type(t_pars *lst, int is_token);
 
 int			set_int_quote(t_pars *lst, char *line, int i, int j);
+int			set_int_dquote(t_pars *lst, char *line, int i, int j);
 int			*tmp_index(int i);
+int			even_nb(int nb);
 
 void		pars_env(t_pars **lst);
 void		add_env(t_pars *lst, char *env_var, t_env *info);

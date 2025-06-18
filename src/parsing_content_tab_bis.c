@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_content_tab.c                              :+:      :+:    :+:   */
+/*   parsing_content_tab_bis.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:26:30 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 18:06:57 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 18:07:24 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static void	feed_tab(char *line, int *tab, t_tab *t)
 {
 	if (t->in_quote)
 	{
-		if (t->quote == '\'' && line[t->i] != '\'')
+		if (t->quote == '"' && line[t->i] != '"')
 			tab[t->tab_i++] = t->loc_quote;
 		while (line[t->i] != t->quote && t->i++ < t->j)
 			t->loc_quote++;
-		if (t->quote == '\'' && line[t->i - 1] != '\'')
+		if (t->quote == '"' && line[t->i - 1] != '"')
 			tab[t->tab_i++] = t->loc_quote;
 		t->i++;
 		feed_tab_bis(line, t);
@@ -93,7 +93,7 @@ static void	feed_tab(char *line, int *tab, t_tab *t)
 	}
 }
 
-int	set_int_quote(t_pars *lst, char *line, int i, int j)
+int	set_int_dquote(t_pars *lst, char *line, int i, int j)
 {
 	int		*tab;
 	int		in_quote;
@@ -113,6 +113,6 @@ int	set_int_quote(t_pars *lst, char *line, int i, int j)
 	{
 		feed_tab(line, tab, &t);
 	}
-	lst->tab = tab;
+	lst->dtab = tab;
 	return (0);
 }
