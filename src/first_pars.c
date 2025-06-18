@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:50:39 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 14:14:10 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:48:40 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	error_msg(int token)
 
 static int	set_pars(char *line, int *i, int *prev_is_token)
 {
+	int	tmp;
+
 	*i = 0;
 	skip_space(line, i);
 	*prev_is_token = verif_token(line, *i);
@@ -70,6 +72,15 @@ static int	set_pars(char *line, int *i, int *prev_is_token)
 		return (-1);
 	}
 	skip_token(line, i, *prev_is_token);
+	tmp = *i;
+	while (line[tmp] && (line[tmp] == 32
+			|| (line[tmp] >= 9 && line[tmp] <= 13)))
+		tmp++;
+	if (!line[tmp] && *prev_is_token != -1)
+	{
+		error_msg(6);
+		return (-1);
+	}
 	return (0);
 }
 
