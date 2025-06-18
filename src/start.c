@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:27:25 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/12 19:54:18 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:34:52 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static t_all	*set_struct(void)
 		return (NULL);
 	all->lst = lst;
 	data.std_err = 0;
-	data.file = 1;
+	data.std_in = 0;
+	data.std_out = 1;
 	all->data = data;
 	return (all);
 }
@@ -107,10 +108,10 @@ int	main(void)
 		}
 		if (line)
 			free(line);
+		ft_lstlast(*(all->lst));
 		ft_lstclear(all->lst);
 		if (set_list(&(all->lst)) == -1)
 			return (-1);
-		//ft_lstlast(*lst);
 	}
 	clear_all(all, line);
 }

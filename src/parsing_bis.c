@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:47:30 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/06 10:44:44 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:27:36 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	feed_not_token(t_pars *lst)
 {
-	if (ft_lstsize(lst) == 1)
+	if (lst->prev == NULL)
 		lst->type = COMMAND;
 	else
 	{

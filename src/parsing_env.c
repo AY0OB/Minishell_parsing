@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:02:53 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/13 11:48:02 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:17:21 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,13 @@ void	pars_env(t_pars **lst)
 	len_content_base = 0;
 	while (lst_tmp)
 	{
-		if (lst_tmp->tab[1] != 0)
+		if (lst_tmp->tab)
 		{
-			len_content_base = ft_strlen(lst_tmp->content);
-			check_env(lst_tmp, len_content_base);
+			if (lst_tmp->tab[1] != 0)
+			{
+				len_content_base = ft_strlen(lst_tmp->content);
+				check_env(lst_tmp, len_content_base);
+			}
 		}
 		lst_tmp = lst_tmp->next;
 	}

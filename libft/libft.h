@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:28:07 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/12 17:06:44 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:33:15 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ typedef struct s_pars
 typedef struct s_data
 {
 	int	std_err;
-	int	file;
+	int	std_in;
+	int	std_out;
 }		t_data;
 
 typedef struct s_all
