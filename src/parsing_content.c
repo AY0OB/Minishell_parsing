@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 01:27:19 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 15:27:03 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/20 19:12:55 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ int	feed_lst_content(t_pars **lst, char *line, int *i)
 	int		j;
 	int		k;
 
+	k = *i;
 	if (line[*i] == '\'' || line[*i] == '"')
-		k = *i + 1;
-	else
-		k = *i;
+		k++;
 	j = 0;
 	if (line[*i] == '\'' || line[*i] == '"')
 		set_index(line, i, &j, line[*i]);

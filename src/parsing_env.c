@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:02:53 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/18 19:26:40 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/20 19:13:27 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,20 @@ static char	*get_env(char *str, int i, int end_quote)
 
 static int	pos_end_quote(t_pars *lst, int i, int len_base)
 {
-	/*int	j;
-
-	j = 0;
-	if (lst->tab[1] == 0 && lst->dtab[1] = 0)
-		return (ft_strlen(lst->content));
-	while (i >= lst->tab[j] && j < len_base)
-	{
-		j += 2;
-	}
-	if (j > len_base)
-		return (ft_strlen(lst->content));
-	return (lst->tab[j]);*/
 	int	j;
 	int	d;
 
 	j = 0;
 	d = 0;
 	while (j < len_base && i >= lst->tab[j])
-		j += 2;
+		j++;
 	while (d < len_base && i >= lst->dtab[d])
-		d += 2;
-	if (j > len_base && d > len_base)
+		d++;
+	if (j == len_base && d == len_base)
 		return (ft_strlen(lst->content));
-	if (j > len_base)
+	if (j == len_base)
 		return (lst->dtab[d]);
-	if (d > len_base)
+	if (d == len_base)
 		return (lst->tab[j]);
 	if (lst->tab[j] < lst->dtab[d])
 		return (lst->tab[j]);

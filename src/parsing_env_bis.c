@@ -6,7 +6,7 @@
 /*   By: amairia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 05:47:01 by amairia           #+#    #+#             */
-/*   Updated: 2025/06/13 12:12:57 by amairia          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:54:31 by amairia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	incr_tab_bis(t_pars *lst, int pos, int len_add, int len_base)
 	{
 		if (lst->tab[i] >= pos)
 			lst->tab[i] += (len_add);
+		if (lst->dtab[i] >= pos)
+			lst->dtab[i] += (len_add);
 		i++;
 	}
 }
